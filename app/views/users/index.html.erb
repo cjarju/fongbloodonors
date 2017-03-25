@@ -1,0 +1,41 @@
+<% provide(:title, 'Users') %>
+
+<div class="body-container">
+
+  <h1>Users</h1>
+  <br/>
+  <%= form_tag(search_user_path, {method: :get, class: "form-inline", role: "form"}) do %>
+      <div class="searchbox">
+        <%= text_field_tag :user_name, '', {class:"form-control", placeholder:"search by name" }  %>
+        <%= submit_tag('Search', {class: "btn btn-large btn-primary"} ) %>
+      </div>
+  <% end %>
+<br/>
+  <table class="table">
+    <thead>
+    <tr>
+      <%= render "theaders" %>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.user_role.name %></td>
+          <td><%= link_to edit_user_path(user), title: 'Edit' do %><i class="glyphicon glyphicon-edit"></i> <% end %></td>
+          <td><%= link_to user, method: :delete, title: 'Delete', data: { confirm: 'Are you sure?' } do %><i class="glyphicon glyphicon-trash"></i><% end %></td>
+          <td><%= link_to reset_path(user), title: 'Reset Password' do %><i class="glyphicon glyphicon-lock"></i> <% end %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <div class="apple_pagination">
+    <%= will_paginate %>
+  </div>
+
+</div>
+
+<i class="glyphicon glyphicon-plus"></i> <%= link_to 'New User', signup_path %>

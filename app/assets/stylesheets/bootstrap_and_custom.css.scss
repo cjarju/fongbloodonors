@@ -1,0 +1,297 @@
+/*override bootstrap variable definitions here */
+
+@import "bootstrap.min";
+//@import "bootstrap-theme.min";
+@import "datepicker";
+@import "cover_page";
+@import "login_page";
+@import "pagination";
+/* Move down content because we have a fixed navbar that is 50px tall
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+*/
+
+/* Override Rail's default error calls with Bootstrap 3
+.field_with_errors {
+  @extend .has-error;
+}
+*/
+
+/* Override Bootstrap 3 font location */
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: image-url('glyphicons-halflings-regular.eot');
+  src: image-url('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  image-url('glyphicons-halflings-regular.woff') format('woff'),
+  image-url('glyphicons-halflings-regular.ttf') format('truetype'),
+  image-url('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+/*div{border-style:solid}*/
+/*
+form{
+  border-style: solid;
+  border-color: red;
+}
+div.form-group{
+
+  border-style: solid;
+  border-color: blue;
+}
+*/
+
+
+.form-group {
+  text-align: left;
+  .pad-lft-1 {
+    padding-left: 75px;
+    .field_with_errors{
+      display: inline;
+    }
+  }
+
+  .pad-lft-2 {
+    padding-left: 135px;
+
+  }
+}
+
+
+
+/*drop down toggle*/
+.nav.masthead-nav > li.dropdown.active.open > a,
+.nav.masthead-nav > li.dropdown.open > a
+{
+
+  background-color: #333;
+
+}
+
+/*drop down menu hover*/
+.nav.masthead-nav > li.dropdown.active.open > ul.dropdown-menu a:hover,
+.nav.masthead-nav > li.dropdown.open > ul.dropdown-menu a:hover
+{
+
+  background-color: #fff;
+
+}
+
+.dropdown-menu{
+  background-color: #333;
+  text-align: left;
+  li a{
+    color: #fff;
+  }
+}
+
+
+.div-content-left{
+  text-align: left;
+  margin: auto
+}
+
+.div-content-center{
+  text-align: center;
+  margin: auto
+}
+
+$grayMediumLight: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.debug_dump {
+  text-align: left;
+  background-color: #262626;
+  color: #ffffff;
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+/*scaffold SCSS*/
+/*
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a {
+  color: #000;
+  &:visited {
+    color: #666;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #000;
+  }
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+*/
+
+
+.alert {
+  border-style: none;
+  color: green;
+  background-color: #333;
+}
+
+.alert.alert-error{
+  color: red;
+}
+
+
+.searchbox {
+  text-align: left;
+}
+
+.searchbox-center {
+  text-align: center;
+}
+
+#carousel-example-generic {
+  height: 400px;
+}
+
+/* center 2nd and later pie charts */
+.pie-center {
+  display: table;
+  margin: 0 auto;
+}
+
+
+.show_record {
+  text-align: left;
+  display: inline-table;
+
+  tr, td {
+    padding-left: 10px; padding-right: 10px;
+  }
+
+}
+
+.input-group.date{
+  width: 150px;
+  display: inline-table;
+}
+
+.field_with_errors  {
+  padding: 2px;
+  label {
+    color: #cc0000;
+
+  }
+  input {
+    border-style: solid;
+    border-color: #f00;
+  }
+}
+
+#error_explanation {
+  margin-right: auto;
+  margin-left: auto;
+  width: 450px;
+  border: 2px solid #ff0000;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color:  #333;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+    text-align: left;
+  }
+}
+
+#error_explanation {
+  color: #fff;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.footer-container {
+  margin-top: 40px;
+}
+
+.div-inner, .body-container, .graph-container, .div-gicon {
+  padding-top: 30px;
+}
+
+.div-searchbox, .div-gicon {
+  padding-top: 20px;
+}
+
+.div-searchbox {
+  padding-bottom: 20px;
+}
+
+.pagination {
+  margin: 0 0 20px 0;
+}
+
+/* forms */
+
+/* form-group div in in form */
+.form-inline .form-group {
+  margin-bottom: 10px;  
+}
+
+.gender-radio label {
+  padding-right: 10px;
+}
+
+.fifty-perc-width {
+  width: 50%
+}
+
+.twenty5-perc-width {
+  width: 25%
+}
+
+.submit-btn {
+  margin-bottom: 10px;
+}
+
+.back-icon {
+  margin-top: 10px;
+}

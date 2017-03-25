@@ -1,0 +1,14 @@
+<th>Date</th>
+<th>Name</th>
+<th>Age</th>
+<!--
+<th>Phone #</th>
+<th>Address</th>
+-->
+<th>Gender</th>
+<th>Group</th>
+<th>Recipient</th>
+<% if current_user.user_role.name != 'Guest' %>
+ <th></th>
+ <th></th>
+<% end %>

@@ -1,0 +1,47 @@
+<% provide(:title, 'Receivers') %>
+
+<div class="body-container">
+    <h1>Blood Recipients</h1>
+    <%= form_tag(search_blood_receiver_path, {method: :get, class: "form-inline", role: "form"}) do %>
+      <div class="searchbox div-searchbox">
+        <%= text_field_tag :receiver_name, '', {class:"form-control", placeholder:"search by name" }  %>
+        <%= submit_tag('Search', {class: "btn btn-large btn-primary"} ) %>
+      </div>
+    <% end %>
+    <table class="table">
+      <thead>
+        <tr>
+          <%= render "theaders" %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @blood_receivers.each do |blood_receiver| %>
+          <tr>
+            <td><%= blood_receiver.date_received %></td>
+            <td><%= link_to blood_receiver.name, blood_receiver_path(blood_receiver) %></td>
+            <td><%= blood_receiver.age %></td>
+            <!--
+            <td><%= blood_receiver.phone_num %></td>
+            <td><%= blood_receiver.address %></td>
+            -->
+            <td><%= blood_receiver.gender.sexval %></td>
+            <td><%= blood_receiver.blood_group.blood_type %></td>
+
+            <td><%= link_to blood_receiver.blood_donor.name, blood_donor_path(blood_receiver.blood_donor) %></td>
+            <% if current_user.user_role.name != 'Guest' %>
+               <td><%= link_to edit_blood_receiver_path(blood_receiver), title: "Edit" do %><i class="glyphicon glyphicon-edit"></i> <% end %></td>
+                <% if current_user.user_role.name == 'Admin' %>
+                 <td><%= link_to blood_receiver, method: :delete, title: "Delete", data: { confirm: 'Are you sure?' } do %><i class="glyphicon glyphicon-trash"></i><% end %></td>
+                <% end %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <div class="apple_pagination">
+    <%= will_paginate %>
+  </div>
+</div>
+<% if current_user.user_role.name != 'Guest' %>
+    <i class="glyphicon glyphicon-plus"></i> <%= link_to 'New Blood Recipient', get_donor_path %>
+<% end %>

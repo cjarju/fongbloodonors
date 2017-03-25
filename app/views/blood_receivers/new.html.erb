@@ -1,0 +1,90 @@
+<% @blood_donors = BloodDonor.where("used = ? and blood_group_id = ?", FALSE, @blood_donor.blood_group.id) %>
+<% @blood_donor_id = @blood_donor.id %>
+
+<div class="body-container">
+  <h1>New Blood Receiver</h1>
+  <div class="div-content-left">
+
+    <%= form_tag(blood_receivers_path, {class: "form-horizontal", role: "form"})  do %>
+      <% if @blood_receiver.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@blood_receiver.errors.count, "error") %> prohibited this blood_receiver from being saved:</h2>
+          <ul>
+            <% @blood_receiver.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= label_tag :name, 'Name', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= text_field_tag "blood_receiver[name]", '', {class:"form-control", placeholder:"name surname", required: true} %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= label_tag :blood_group_id, 'Blood Group:', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= select_tag "blood_receiver[blood_group_id]", options_from_collection_for_select(BloodGroup.where("id = ?", @blood_donor.blood_group_id), 'id', 'blood_type', selected: @blood_donor.blood_group.id), {class: "form-control fifty-perc-width"} %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= label_tag :gender_id, 'Gender: ', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7">
+            <%= radio_button_tag("blood_receiver[gender_id]",1) %> Male
+            <%= radio_button_tag("blood_receiver[gender_id]",2) %> Female
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= label_tag :age, 'Age:', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= text_field_tag "blood_receiver[age]", '', {size: '3', maxlength: '3', placeholder: "age" , class: "form-control twenty5-perc-width", required: true} %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= label_tag :date_received, 'Date Received: ', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7">
+            <div class="input-group date">
+              <%= text_field_tag "blood_receiver[date_received]", '', {placeholder: 'date received', class: "form-control",  required: true }  %>
+              <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= label_tag :phone_num, 'Phone Number:', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= text_field_tag "blood_receiver[phone_num]", '',{size: '7', maxlength: '7', placeholder: 'xxxxxxx', class: "form-control fifty-perc-width"} %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= label_tag :address, 'Address:', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= text_field_tag "blood_receiver[address]", '', {size: '35', maxlength: '50', placeholder: 'address', class: "form-control ", required: true } %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= label_tag :blood_donor_id, 'Blood Donor:', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= select_tag "blood_receiver[blood_donor_id]", options_from_collection_for_select(@blood_donors, 'id', 'name', selected: @blood_donor_id), {class: "form-control fifty-perc-width"} %></div>
+        </div>
+      </div>
+
+      <div class="div-content-center">
+        <%= submit_tag((current_page?(new_blood_receiver_path))? 'Create' : 'Save' , {class: "btn btn-primary"})  %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<i class="glyphicon glyphicon-chevron-left back-icon"></i> <%= link_to 'Back', blood_receivers_path %>

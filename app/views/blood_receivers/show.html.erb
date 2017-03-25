@@ -1,0 +1,27 @@
+<div class="body-container">
+  <h1>Recipient Info</h1>
+  <table class="show_record">
+    <thead></thead>
+    <tbody>
+      <tr><td>Date Received: </td><td><%= @blood_receiver.date_received %></td></tr>
+      <tr><td>Name: </td><td><%= @blood_receiver.name %></td></tr>
+      <tr><td>Age: </td> <td><%= @blood_receiver.age %></td></tr>
+      <tr><td>Phone Number: </td><td><%= @blood_receiver.phone_num %></td></tr>
+      <tr><td>Address: </td> <td><%= @blood_receiver.address %></td></tr>
+      <tr><td>Gender: </td> <td><%= @blood_receiver.gender.sexval %></td></tr>
+      <tr><td>Blood Group: </td> <td><%= @blood_receiver.blood_group.blood_type %></td></tr>
+      <tr><td>Blood Donor: </td> <td><%= link_to @blood_receiver.blood_donor.name, blood_donor_path(@blood_receiver.blood_donor) %></td></tr>
+    </tbody>
+  </table>
+  <div class="div-gicon"><i class="glyphicon glyphicon-th-list"></i>  <%= link_to 'Recipients', blood_receivers_path %></div>
+</div>
+
+<!--
+  <% if current_user.user_role.name != 'Guest' %>
+      <td><%= link_to 'Edit', edit_blood_receiver_path(@blood_receiver) %></td>
+      <td><%= link_to 'Destroy', @blood_receiver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
+  <% if current_user.user_role.name != 'Guest' %>
+      <%= link_to 'Recipients', blood_receivers_path %>  | <%= link_to 'New receiver', new_blood_receiver_path %>
+  <% end %>
+-->

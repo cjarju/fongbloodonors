@@ -1,0 +1,12 @@
+<% provide(:title, 'Get Donor') %>
+
+<div class="body-container">
+ <h2>Recipient Blood Group</h2>
+ <%= form_tag(show_donor_path, {method: :get, class: "form-inline", role: "form"}) do %>
+   <div class="searchbox-center">
+     <%= select_tag "blood_group", options_from_collection_for_select(BloodGroup.all, :id, :blood_type), {class: "form-control", required: true, prompt: "Please select"} %>
+     <%= submit_tag('Search', {class: "btn btn-large btn-primary"} ) %>
+   </div>
+ <% end %>
+ <i class="glyphicon glyphicon-chevron-left back-icon"></i> <%= link_to 'Back', blood_receivers_path %>
+</div>

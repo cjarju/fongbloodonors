@@ -1,0 +1,74 @@
+
+  <div class="div-content-left">
+    <%= form_for @blood_donor, html: {class: "form-horizontal", role: "form"} do |f| %>
+      <% if @blood_donor.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@blood_donor.errors.count, "error") %> prohibited this blood donor from being saved:</h2>
+            <ul>
+              <% @blood_donor.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= f.label :name, 'Name:', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= f.text_field :name, {placeholder: 'name surname', class: "form-control",  required: true } %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= f.label :blood_group_id, 'Blood Group:', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= f.collection_select(:blood_group_id, BloodGroup.all, :id, :blood_type,  {prompt: true}, {class: "form-control fifty-perc-width", required: true }) %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= f.label :gender_id, 'Gender: ', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7 gender-radio"><%= f.collection_radio_buttons(:gender_id, Gender.all, :id, :sexlabel) %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= f.label :age, 'Age:', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= f.text_field :age, {size: '1', maxlength: '3', placeholder: 'age' , class: "form-control twenty5-perc-width", required: true} %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= f.label :date_donated, 'Date Donated: ', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7">
+            <div class="input-group date">
+              <%= f.text_field :date_donated, {placeholder: 'date donated', class: "form-control",  required: true }  %>
+              <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= f.label :phone_num, 'Phone Number:', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= f.text_field :phone_num, {size: '7', maxlength: '7', placeholder: 'xxxxxxx', class: "form-control fifty-perc-width"} %></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="pad-lft-2">
+          <%= f.label :address, 'Address:', {class: "col-sm-3 control-label"} %>
+          <div class="col-sm-7"><%= f.text_field :address, {size: '35', maxlength: '50', placeholder: 'address', class: "form-control", required: true } %></div>
+        </div>
+      </div>
+
+      <div class="div-content-center submit-btn">
+        <%= f.submit((current_page?(new_blood_donor_path))? 'Create' : 'Save' , {class: "btn btn-primary"})  %>
+      </div>
+    <% end %>
+  </div>
+</div>

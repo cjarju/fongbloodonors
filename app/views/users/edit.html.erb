@@ -1,0 +1,8 @@
+<% provide(:title, "User | Edit") %>
+
+<div class="body-container">
+  <h2>Update account: <span style="font-size:25px"><%= @user.name %></span> </h2>
+ 
+  <%= render 'form' %>
+  
+  <i class="glyphicon glyphicon-chevron-left"></i> <%= link_to 'Back', users_path %>
