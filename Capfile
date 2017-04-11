@@ -35,5 +35,10 @@ require "capistrano/rails/migrations"
 # require "capistrano/passenger"
 require "capistrano/puma"
 
+# in capistrano3-puma v3+, this line is required for loading default 
+# puma tasks in this version. 
+# See https://github.com/seuros/capistrano-puma#usage
+install_plugin Capistrano::Puma
+
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
