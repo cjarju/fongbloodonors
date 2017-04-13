@@ -59,11 +59,16 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'capistrano',         require: false
-  gem 'capistrano-rbenv',   require: false
-  gem 'capistrano-rails',   require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false
+  # require: false = install the capistrano gems, but do not call require automatically when you 
+  # start Bundler; saves memory and improves startup time   
+  # to use the gems, you have to manually call require 'gem path' (in the Capfile)
+
+  gem 'capistrano',         '~> 3.8', require: false
+  gem 'capistrano-bundler', '~> 1.2', require: false
+  gem 'capistrano-rails',   '~> 1.2', require: false
+  gem 'capistrano-rbenv',   '~> 2.1', require: false
+  gem 'capistrano3-puma',   '~> 3.1', require: false
+  gem 'capistrano3-nginx',  '~> 2.1', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
